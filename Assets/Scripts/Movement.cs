@@ -17,11 +17,33 @@ public class Movement : NetworkBehaviour
 
     void Update()
     {
-        if(isLocalPlayer) {
-        inputX = Input.GetAxisRaw("Horizontal");
-        inputY = Input.GetAxisRaw("Vertical");
+        if(isLocalPlayer)
+        {
+            inputX = Input.GetAxisRaw("Horizontal");
+            inputY = Input.GetAxisRaw("Vertical");
 
-        rb.velocity = new Vector2(inputX, inputY) * speed;
+            rb.velocity = new Vector2(inputX, inputY) * speed;
         }
+
+            
+        if(Input.GetKeyDown(KeyCode.F))
+        {
+            Debug.Log("Pedindo uma mensagem para o Server!");
+            TalkToAll();
+        }
+    }
+
+    //------------------------------- Comunicação entre Cliente e Servidor--------------------------------
+
+    [Command]
+    void TalkToServer()
+    {
+        Debug.Log("Player pediu uma mensagem!");
+    }
+
+    [ClientRpc]
+    void TalkToAll()
+    {
+        Debug.Log("E aí galerinha que assiste meu canal!");
     }
 }
