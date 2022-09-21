@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 
-public class Movement : NetworkBehaviour
+public class Player : NetworkBehaviour
 {
     Rigidbody2D rb;
     float inputX;
     float inputY;
     public float speed = 3;
+
 
     public int coins;
 

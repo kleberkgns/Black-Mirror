@@ -1,3 +1,4 @@
+using System.Drawing;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,7 +15,7 @@ public class MyNetworkManager : NetworkManager
     public override void OnServerAddPlayer(NetworkConnectionToClient conn)
     {
         Transform startPoint;
-        
+
         if(numPlayers == 0)
         {
             startPoint = player1SpawnPoint;
