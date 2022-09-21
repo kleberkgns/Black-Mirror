@@ -7,6 +7,10 @@ public class MyNetworkManager : NetworkManager
     public Transform player1SpawnPoint;
     public Transform player2SpawnPoint;
 
+    public List<Transform> coinSpawnPoints;
+    public int maxCoinsInGame = 2;
+    public static int spawnedCoins = 0;
+
     public override void OnServerAddPlayer(NetworkConnectionToClient conn)
     {
         Transform startPoint;
@@ -18,6 +22,7 @@ public class MyNetworkManager : NetworkManager
         else
         {
             startPoint = player2SpawnPoint;
+            InvokeRepeating("SpawnCoin", 2, 2);
         }
         
         GameObject new_player = Instantiate(playerPrefab, startPoint.position, startPoint.rotation);
@@ -52,4 +57,17 @@ public class MyNetworkManager : NetworkManager
         Debug.Log("Um jogador saiu da partida...");
     }
 
+        
+    public void SpawnCoin()
+    {
+        if(spawnedCoins < maxCoinsInGame)
+        {
+            Vector3 local = coinSpawnPoints[Random.Range(0, coinSpawnPoints.Count)].position;
+            
+            GameObject new_coin = Instantiate(spawnPrefabs.Find(prefab => prefab.name == "Coin"), local, transform.rotation);
+                    
+            NetworkServer.Spawn(new_coin);
+            spawnedCoins++;
+        }
+    }
 }
