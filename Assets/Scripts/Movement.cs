@@ -10,6 +10,8 @@ public class Movement : NetworkBehaviour
     float inputY;
     public float speed = 3;
 
+    public int coins;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -45,5 +47,16 @@ public class Movement : NetworkBehaviour
     void TalkToAll()
     {
         Debug.Log("E aí galerinha que assiste meu canal!");
+    }
+
+    
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Coin"))
+        {
+            coins++;
+            MyNetworkManager.spawnedCoins--;
+            Destroy(collision.gameObject);
+        }
     }
 }

@@ -64,7 +64,7 @@ public class MyNetworkManager : NetworkManager
         {
             Vector3 local = coinSpawnPoints[Random.Range(0, coinSpawnPoints.Count)].position;
             
-            GameObject new_coin = Instantiate(spawnPrefabs.Find(prefab => prefab.name == "Coin"), local, transform.rotation);
+            GameObject new_coin = Instantiate(spawnPrefabs.Find(prefab => prefab.name == "Moeda"), local, transform.rotation);
                     
             NetworkServer.Spawn(new_coin);
             spawnedCoins++;
