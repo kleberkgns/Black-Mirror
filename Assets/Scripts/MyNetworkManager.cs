@@ -1,8 +1,8 @@
-using System.Drawing;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+
 public class MyNetworkManager : NetworkManager
 {
     public Transform player1SpawnPoint;
@@ -15,18 +15,23 @@ public class MyNetworkManager : NetworkManager
     public override void OnServerAddPlayer(NetworkConnectionToClient conn)
     {
         Transform startPoint;
+        Color color;
 
         if(numPlayers == 0)
         {
             startPoint = player1SpawnPoint;
+            color = Color.green;
         }
         else
         {
             startPoint = player2SpawnPoint;
             InvokeRepeating("SpawnCoin", 2, 2);
+            color = Color.red;
         }
         
         GameObject new_player = Instantiate(playerPrefab, startPoint.position, startPoint.rotation);
+
+        new_player.GetComponent<Player>().playerColor = color;
 
         NetworkServer.AddPlayerForConnection(conn, new_player);
     }

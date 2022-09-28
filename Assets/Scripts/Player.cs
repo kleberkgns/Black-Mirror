@@ -10,12 +10,15 @@ public class Player : NetworkBehaviour
     float inputY;
     public float speed = 3;
 
-
+    [SyncVar]
     public int coins;
 
+    [SyncVar]
+    public Color playerColor;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        GetComponent<SpriteRenderer>().color = playerColor;
     }
 
     void Update()
