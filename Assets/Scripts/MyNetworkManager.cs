@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using Mirror;
 
 public class MyNetworkManager : NetworkManager
@@ -12,8 +13,12 @@ public class MyNetworkManager : NetworkManager
     public int maxCoinsInGame = 2;
     public static int spawnedCoins = 0;
 
+    public UnityEvent OnPlayerConnect;
+
     public override void OnServerAddPlayer(NetworkConnectionToClient conn)
     {
+        OnPlayerConnect.Invoke();
+
         Transform startPoint;
         Color color;
 
