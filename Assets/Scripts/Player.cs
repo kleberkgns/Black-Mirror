@@ -25,6 +25,7 @@ public class Player : NetworkBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         GetComponent<SpriteRenderer>().color = playerColor;
+        GameObject.FindGameObjectWithTag("HUD").GetComponent<HUD>().AddPlayerListener(this);        
     }
 
     void Update()
@@ -66,7 +67,7 @@ public class Player : NetworkBehaviour
         coins += 1;
         OnCoinCollect.Invoke(coins);
     }
-    
+
     //Collision Methods
     private void OnTriggerEnter2D(Collider2D collision)
     {
