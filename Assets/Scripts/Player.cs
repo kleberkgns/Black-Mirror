@@ -1,20 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using Mirror;
+
+public class IntEvent : UnityEvent<int> {}
 
 public class Player : NetworkBehaviour
 {
+    //Variables
     Rigidbody2D rb;
     float inputX;
     float inputY;
     public float speed = 3;
 
-    [SyncVar]
-    public int coins;
+    [SyncVar] public int coins;
+    [SyncVar] public Color playerColor;
 
-    [SyncVar]
-    public Color playerColor;
+    //Events
+    public IntEvent OnCoinCollect;
+
+    //Methods
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -53,12 +59,20 @@ public class Player : NetworkBehaviour
         Debug.Log("E aí galerinha que assiste meu canal!");
     }
 
+
+    [Server]
+    public void AddCoins()
+    {
+        coins += 1;
+        OnCoinCollect.Invoke(coins);
+    }
     
+    //Collision Methods
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("Coin"))
         {
-            coins++;
+            AddCoins();
             MyNetworkManager.spawnedCoins--;
             Destroy(collision.gameObject);
         }
