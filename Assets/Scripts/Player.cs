@@ -3,8 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using Mirror;
+using System;
 
+[Serializable]
 public class IntEvent : UnityEvent<int> {}
+
+[Serializable]
+public class FloatEvent : UnityEvent<float, float> {}
 
 public class Player : NetworkBehaviour
 {
