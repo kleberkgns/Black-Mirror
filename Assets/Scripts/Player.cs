@@ -80,7 +80,7 @@ public class Player : NetworkBehaviour
         {
             AddCoins();
             MyNetworkManager.spawnedCoins--;
-            Destroy(collision.gameObject);
+            Destroy(collision.gameObject, 0.5f);
         }
     }
 }
