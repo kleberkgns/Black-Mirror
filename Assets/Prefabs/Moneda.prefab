@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 312615170599629541}
   - component: {fileID: 312615170599629539}
   - component: {fileID: 3237341906078125400}
+  - component: {fileID: 2472706117365585661}
   m_Layer: 0
   m_Name: Moneda
   m_TagString: Coin
@@ -119,3 +120,23 @@ MonoBehaviour:
   visible: 0
   m_AssetId: 28409b09a20697648836761773da4d5e
   hasSpawned: 0
+--- !u!95 &2472706117365585661
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 312615170599629540}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: afcda576b8c0c624aa971d3e795693c5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

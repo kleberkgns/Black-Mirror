@@ -9,7 +9,10 @@ using System;
 public class IntEvent : UnityEvent<int> {}
 
 [Serializable]
-public class FloatEvent : UnityEvent<float, float> {}
+public class FloatEvent : UnityEvent<float> { }
+
+[Serializable]
+public class InputEvent : UnityEvent<float, float> { }
 
 public class Player : NetworkBehaviour
 {
@@ -25,6 +28,8 @@ public class Player : NetworkBehaviour
     //Events
     public IntEvent OnCoinCollect;
 
+    public InputEvent OnDirectionChanged;
+
     //Methods
     void Start()
     {
@@ -39,6 +44,8 @@ public class Player : NetworkBehaviour
         {
             inputX = Input.GetAxisRaw("Horizontal");
             inputY = Input.GetAxisRaw("Vertical");
+
+            OnDirectionChanged.Invoke(inputX, inputY);
 
             rb.velocity = new Vector2(inputX, inputY) * speed;
         }

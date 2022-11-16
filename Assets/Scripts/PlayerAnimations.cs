@@ -15,14 +15,14 @@ public class PlayerAnimations : MonoBehaviour
     {
         if (inputX != 0)
         {
-            anim.Play("Player_WalkHorizontal");
-            transform.localScale = new Vector3(-inputX, 1, 1);
+            anim.Play("Hero_Walk");
+            transform.localScale = new Vector3(inputX, 1, 1);
         }
         else if (inputY > 0)
-            anim.Play("Player_WalkUp");
+            anim.Play("Hero_Walk_Back");
         else if (inputY < 0)
-            anim.Play("Player_WalkDown");
+            anim.Play("Hero_Walk_Front");
         else
-            anim.Play("Player_Idle");
+            anim.Play("Hero_Idle");
     }
 }
