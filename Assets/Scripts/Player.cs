@@ -80,6 +80,14 @@ public class Player : NetworkBehaviour
         OnCoinCollect.Invoke(coins);
     }
 
+    [Server]
+    public void RemoveCoins(int value)
+    {
+        coins -= value;
+        if (coins < 0) coins = 0;
+        OnCoinCollect.Invoke(coins);
+    }
+
     //Collision Methods
     private void OnTriggerEnter2D(Collider2D collision)
     {
